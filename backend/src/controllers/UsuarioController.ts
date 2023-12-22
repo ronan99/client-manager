@@ -1,4 +1,5 @@
 import {Request, Response} from 'express'
+
 export default class UsuarioController {
 
 	async listAll(req: Request, res: Response){

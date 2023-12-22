@@ -2,7 +2,7 @@
 	"main": "index.ts",
 	"scripts": {
 		"start": "rimraf build && tsc -p tsconfig.json && tsc-alias && nodemon --inspect",
-		"build": "rimraf build && tsc -p tsconfig.json && tsc-alias && cpy ./src/**/**.html build/src"
+		"build": "rimraf build && tsc -p tsconfig.json && tsc-alias"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
