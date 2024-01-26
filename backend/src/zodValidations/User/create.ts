@@ -6,7 +6,7 @@ export const userCreateSchema = z.object({
 			invalid_type_error: 'Nome inválido.',
 			required_error: 'Nome é obrigatório.',
 		}),
-	telefone: z
+	phone: z
 		.string({
 			invalid_type_error: 'Telefone inválido.',
 			required_error: 'Telefone é obrigatório.',

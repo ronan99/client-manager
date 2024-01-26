@@ -9,7 +9,7 @@ export const userFindSchema = z.object({
 		.string({
 			invalid_type_error: 'Email inválido.',
 		}).optional(),
-	telefone: z
+	phone: z
 		.string({
 			invalid_type_error: 'Telefone inválido.',
 		}).optional()

@@ -13,9 +13,9 @@ export default class ClientController {
 
 	async find(req: Request, res: Response){
 		try {
-			const {name, email, telefone} = userFindSchema.parse(req.query)
+			const {name, email, phone} = userFindSchema.parse(req.query)
 			const values = {
-				name, email, telefone
+				name, email, phone
 			}
 
 			
@@ -31,11 +31,11 @@ export default class ClientController {
 
 	async create(req: Request, res: Response){
 		try {
-			const {name, email, telefone, x, y} = userCreateSchema.parse(req.body)
+			const {name, email, phone, x, y} = userCreateSchema.parse(req.body)
 			const coordinates = `(${x}, ${y})`
-			const values = [name, email, telefone, coordinates]
+			const values = [name, email, phone, coordinates]
 			
-			let data = await database.insert(`INSERT INTO ${this.tableName}(name, email, telefone, coordinates) values($1, $2, $3, $4) returning *`, values)
+			let data = await database.insert(`INSERT INTO ${this.tableName}(name, email, phone, coordinates) values($1, $2, $3, $4) returning *`, values)
 			return res.status(200).json(successResponse("Usuário criado", data))
 		} catch (error) {
 			if(error instanceof InternalError) throw new InternalError(error.message)
