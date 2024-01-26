@@ -8,11 +8,11 @@ class Database {
 		this.client = new Pool(config)
 	}
 
-	async query(query: string){
+	async query(query: string, values: string[] = []){
 
 		const pool = await this.client.connect();
 
-		const data = await pool.query(query);
+		const data = await pool.query(query, values);
 
 		pool.release();
 
@@ -26,7 +26,6 @@ class Database {
 		let result;
 		try {
 			await pool.query('BEGIN')
-			console.log(data)
 			result = await pool.query(query, data)
 			await pool.query('COMMIT')
 
