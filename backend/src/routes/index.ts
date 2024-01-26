@@ -1,9 +1,9 @@
 import express from 'express'
-import usuario from '@routes/usuario'
+import user from '@routes/user'
 
 const server = express()
 
-server.use('/usuario', usuario)
+server.use('/user', user)
 
 
 export default server

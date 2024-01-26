@@ -40,9 +40,6 @@
 			"@utils/*": [
 				"./src/utils/*"
 			],
-			"@prisma/*": [
-				"./prisma/*"
-			],
 			"@logger/*": [
 				"./logger/*"
 			],

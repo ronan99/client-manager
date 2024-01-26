@@ -3,9 +3,22 @@ version: "3.4"
 services:
   backend:
     build: ./backend
+    container_name: backend_node
     volumes:
       - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
+      # - /usr/src/app/node_modules
     ports:
       - 8080:8080
     command: npm run start
+
+  database:
+    container_name: database_pgsql
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=facilita_pass
+      - POSTGRES_USER=facilita_user
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/tmp/pgsql:/var/lib/postgresql/data

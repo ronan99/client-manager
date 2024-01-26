@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import Routes from './routes/index'
+import { ErrorHandler } from '@middlewares/ErrorHandler'
+
 export class App {
     public server: express.Application
 
@@ -12,7 +14,7 @@ export class App {
 		this.server.set('trust proxy', true)
 		this.middleware()
 		this.rotas()
-		this.erros()
+		this.errors()
 	}
 
 
@@ -24,8 +26,8 @@ export class App {
 		this.server.use(Routes)
 	}
 
-	private erros() {
-		// this.server.use(ErrorHandler)
+	private errors() {
+		this.server.use(ErrorHandler)
 	}
 
 }
