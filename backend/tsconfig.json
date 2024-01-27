@@ -31,18 +31,15 @@
 			"@routes/*": [
 				"./src/routes/*"
 			],
-			"@models/*": [
-				"./src/models/*"
+			"@database/*": [
+				"./src/database/*"
 			],
 			"@controllers/*": [
 				"./src/controllers/*"
 			],
 			"@utils/*": [
 				"./src/utils/*"
-			],
-			"@logger/*": [
-				"./logger/*"
-			],
+			]
 		}
 	},
 	"exclude": [

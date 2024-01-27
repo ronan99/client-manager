@@ -1,11 +1,11 @@
-import {Request, Response} from 'express'
-import database from '../database'
-import { userCreateSchema } from '../zodValidations/User/create'
 import InternalError from '@utils/InternalError'
 import { successResponse } from '@utils/Response'
-import { sqlFilter } from '../lib/MountFilter'
-import { userFindSchema } from '../zodValidations/User/find'
+import { Request, Response } from 'express'
+import database from '../database'
 import findBestRoute from '../lib/CalculateRoute'
+import { sqlFilter } from '../lib/MountFilter'
+import { clientCreateSchema } from '../zodValidations/User/create'
+import { clientFindSchema } from '../zodValidations/User/find'
 
 export default class ClientController {
 
@@ -13,7 +13,7 @@ export default class ClientController {
 
 	async find(req: Request, res: Response){
 		try {
-			const {name, email, phone} = userFindSchema.parse(req.query)
+			const {name, email, phone} = clientFindSchema.parse(req.query)
 			const values = {
 				name, email, phone
 			}
@@ -31,12 +31,12 @@ export default class ClientController {
 
 	async create(req: Request, res: Response){
 		try {
-			const {name, email, phone, x, y} = userCreateSchema.parse(req.body)
+			const {name, email, phone, x, y} = clientCreateSchema.parse(req.body)
 			const coordinates = `(${x}, ${y})`
 			const values = [name, email, phone, coordinates]
 			
 			let data = await database.insert(`INSERT INTO ${this.tableName}(name, email, phone, coordinates) values($1, $2, $3, $4) returning *`, values)
-			return res.status(200).json(successResponse("Usuário criado", data))
+			return res.status(200).json(successResponse("Usuário criado", data[0]))
 		} catch (error) {
 			if(error instanceof InternalError) throw new InternalError(error.message)
 			throw error

@@ -1,21 +1,14 @@
-import { useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import type { GetRef, TableColumnsType, TableColumnType } from 'antd';
+import type { GetRef, TableColumnType, TableColumnsType } from 'antd';
 import { Input, Table } from 'antd';
 import type { FilterDropdownProps } from 'antd/es/table/interface';
+import { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
+import { Client } from '../../services/Client/client.dto';
 
 type InputRef = GetRef<typeof Input>;
 
-
-interface ClientType {
-  key: string;
-  name: string;
-  email: number;
-  phone: string;
-}
-
-type DataIndex = keyof ClientType;
+type DataIndex = keyof Client;
 
 
 export default function TableSearch ({data} : DataTable) {
@@ -33,7 +26,7 @@ export default function TableSearch ({data} : DataTable) {
     setSearchedColumn(dataIndex);
   };
 
-  const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<ClientType> => ({
+  const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Client> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm}) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
@@ -72,28 +65,41 @@ export default function TableSearch ({data} : DataTable) {
       ),
   });
 
-  const columns: TableColumnsType<ClientType> = [
+  const columns: TableColumnsType<Client> = [
     {
       title: 'Nome',
       dataIndex: 'name',
       key: 'name',
-      width: '33%',
+      width: '20%',
       ...getColumnSearchProps('name'),
     },
     {
       title: 'E-mail',
       dataIndex: 'email',
       key: 'email',
-      width: '33%',
+      width: '20%',
       ...getColumnSearchProps('email'),
     },
     {
       title: 'Telefone',
       dataIndex: 'phone',
       key: 'phone',
+      width: '20%',
       ...getColumnSearchProps('phone'),
       sorter: (a, b) => a.phone.length - b.phone.length,
       sortDirections: ['descend', 'ascend'],
+    },
+    {
+      title: 'X',
+      dataIndex: ['coordinates', 'x'],
+      key: 'x',
+      width: '10%',
+    },
+    {
+      title: 'Y',
+      dataIndex: ['coordinates', 'y'],
+      key: 'y',
+      width: '10%'
     },
   ];
 

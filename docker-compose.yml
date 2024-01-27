@@ -3,13 +3,21 @@ version: "3.4"
 services:
   backend:
     build: ./backend
-    container_name: backend_node
+    container_name: backend
     volumes:
-      - ./backend:/usr/src/app
-      # - /usr/src/app/node_modules
+      - ./backend:/usr/src/backend
+      - /usr/src/backend/node_modules
     ports:
       - 8080:8080
-    command: npm run start
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/usr/src/frontend
+      - /usr/src/frontend/node_modules
+    ports:
+      - 9000:9000
 
   database:
     container_name: database_pgsql

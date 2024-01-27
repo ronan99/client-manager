@@ -13,4 +13,5 @@ type ButtonType = {
     children: ReactNode
     type: "link" | "text" | "default" | "primary" | "dashed" | undefined
     onClick?: MouseEventHandler<HTMLElement>
+    htmlType?: "button" | "submit" | "reset" | undefined
 }

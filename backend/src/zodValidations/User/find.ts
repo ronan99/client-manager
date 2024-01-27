@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const userFindSchema = z.object({
+export const clientFindSchema = z.object({
 	name: z
 		.string({
 			invalid_type_error: 'Nome inválido.',
@@ -15,4 +15,4 @@ export const userFindSchema = z.object({
 		}).optional()
 })
 
-export type UserCreate = z.infer<typeof userFindSchema>
+export type UserCreate = z.infer<typeof clientFindSchema>

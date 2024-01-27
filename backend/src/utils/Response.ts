@@ -1,15 +1,15 @@
-export function successResponse<T>(mensagem: string, data: T | null = null, status = 200) {
+export function successResponse<T>(message: string, data: T | null = null, status = 200) {
 	return {
 		status: status,
-		mensagem: mensagem,
+		message: message,
 		data: data,
 	}
 }
 
-export function failResponse<T>(mensagem: string | string[], data: T | null = null, status = 400) {
+export function failResponse<T>(message: string | string[], data: T | null = null, status = 400) {
 	return {
 		status: status,
-		mensagem: mensagem,
+		message: message,
 		data: data,
 	}
 }

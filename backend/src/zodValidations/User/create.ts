@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const userCreateSchema = z.object({
+export const clientCreateSchema = z.object({
 	name: z
 		.string({
 			invalid_type_error: 'Nome inválido.',
@@ -10,7 +10,9 @@ export const userCreateSchema = z.object({
 		.string({
 			invalid_type_error: 'Telefone inválido.',
 			required_error: 'Telefone é obrigatório.',
-		}).min(10, {message: 'Telefone deve ter mais de 10 digitos'}),
+		})
+		.min(10, { message: 'Telefone deve ter mais de 10 digitos'})
+		.max(12, { message: 'Telefone deve ter menos de 12 digitos'}),
 	email: z
 		.string({
 			invalid_type_error: 'Email inválido.',
@@ -30,4 +32,4 @@ export const userCreateSchema = z.object({
 		})
 })
 
-export type UserCreate = z.infer<typeof userCreateSchema>
+export type UserCreate = z.infer<typeof clientCreateSchema>
