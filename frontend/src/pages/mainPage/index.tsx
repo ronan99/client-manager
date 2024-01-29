@@ -24,6 +24,21 @@ export default function MainPage(){
     const handleOk = () => {
         formClient.submit()
     };
+    const orderByBestRoute = async () => {
+        try {
+            const response = await api.getBestRoute()
+            response.data.data.shift()
+            setData(response.data.data)
+        } catch (error: any) {
+            if(error.response.data.data){
+                for(let err of error.response.data.data){
+                    errorMessage(err.erro)
+                }
+                return
+            }
+            errorMessage(error.response.data.message || "Um erro ocorreu ao tentar cadastrar o cliente")
+        }
+    }
 
     const createClient = async (client: ClientCreate) => {
         
@@ -61,7 +76,6 @@ export default function MainPage(){
         });
     };
     
-
     const getData = async () => {
         try {
             const clients = await api.getAll()
@@ -83,7 +97,7 @@ export default function MainPage(){
                 <Space direction='vertical' size="middle" style={{width: '60%'}}>
                     <Flex wrap="wrap" gap="small">
                         <Button type="primary" onClick={() => showModal()}>Adicionar novo</Button>
-                        <Button type="primary">Calcular rota</Button>
+                        <Button type="primary" onClick={() => orderByBestRoute()}>Ordenar por rota</Button>
                     </Flex>
                     
                     <TableSearch data={data}></TableSearch>
