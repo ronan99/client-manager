@@ -1,5 +1,5 @@
 # Client Manager
-Gerenciador de clientes com posições x,y com opção de ordenar por rota de visita
+Gerenciador de clientes com posições x,y com opção de ordenar por melhor rota para visita.
 
 ## TODO
 Adicionar mapa para selecionar pontos e desenhar tracejado de rota.
