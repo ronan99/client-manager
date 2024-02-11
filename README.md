@@ -1,5 +1,8 @@
-# Chat web
-Construindo um chat web para praticar Typescript e utilizar AWS SQS
+# Client Manager
+Gerenciador de clientes com posições x,y com opção de ordenar por rota de visita
+
+## TODO
+Adicionar mapa para selecionar pontos e desenhar tracejado de rota.
 
 ### Como Rodar:
 
